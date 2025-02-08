@@ -18,7 +18,7 @@ class ShellGameClient
             Console.WriteLine($"Шарик изначально под наперстком {ballPosition}.");
             Console.WriteLine("Перемешивание начинается...");
 
-            // Чтение команд перемешивания
+            // чтение команд перемешивания
             for (int i = 0; i < 10; i++)
             {
                 bytesRead = stream.Read(buffer, 0, buffer.Length);
@@ -35,14 +35,13 @@ class ShellGameClient
                 Thread.Sleep(500);
             }
 
-            // Запрос выбора наперстка
             Console.Write("Введите номер наперстка (0, 1 или 2): ");
             int choice = int.Parse(Console.ReadLine());
 
             byte[] guessMsg = Encoding.UTF8.GetBytes($"GUESS {choice}");
             stream.Write(guessMsg, 0, guessMsg.Length);
 
-            // Чтение результата
+            // result chtenie
             bytesRead = stream.Read(buffer, 0, buffer.Length);
             string resultMsg = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
